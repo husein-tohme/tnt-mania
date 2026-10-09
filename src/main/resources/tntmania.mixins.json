@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "net.husein.tntmania.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "mixins": [
+    "BlockPlacedMixin",
+    "CreeperAccessor",
+    "FireBlockMixin",
+    "PrimedTntMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,290 @@
+# Every TNT in the mod, one per line. The blocks, pictures, recipes and tooltips are all made from this table.
+#
+#   id | name | KIND | size | count | what | fuse | colour | label | recipe | what it does
+#
+# "-" means "not used" (fuse "-" is the normal 4 seconds = 80 ticks).
+# recipe: every recipe also needs one normal TNT, unless it starts with "=".
+#         "x*3" is three of x, "@x" is one of this mod's own TNTs.
+# A line that starts with "## " opens a new group (the tabs of the list).
+
+## Bigger blasts
+x2_tnt | TNT x2 | BLAST | 6 | - | - | - | D23B2F | X2 | tnt | A blast twice as strong as normal TNT.
+x5_tnt | TNT x5 | BLAST | 9 | - | - | - | CB352B | X5 | @x2_tnt*2 | Five TNT packed into one block.
+x10_tnt | TNT x10 | SPHERE | 8 | - | - | - | C42F28 | X10 | =@x5_tnt*2 | Ten TNT in one block. Leaves a round crater.
+x20_tnt | TNT x20 | SPHERE | 10 | - | - | - | BB2A25 | X20 | =@x10_tnt*2 | Twenty TNT in one block.
+x50_tnt | TNT x50 | SPHERE | 13 | - | - | - | B02522 | X50 | =@x20_tnt*2,@x10_tnt | Fifty TNT in one block. Stand far back.
+x100_tnt | TNT x100 | SPHERE | 16 | - | - | 100 | A3201F | X100 | =@x50_tnt*2 | A hundred TNT in one block. A crater 32 blocks wide.
+x250_tnt | TNT x250 | SPHERE | 22 | - | - | 120 | 941B1C | X250 | =@x100_tnt*2,@x50_tnt | Removes a small hill.
+x500_tnt | TNT x500 | SPHERE | 28 | - | - | 140 | 831719 | X500 | =@x250_tnt*2 | Removes a big hill.
+x1000_tnt | TNT x1000 | SPHERE | 35 | - | - | 160 | 701316 | X1K | =@x500_tnt*2 | A thousand TNT in one block. A crater 70 blocks wide.
+nuke_tnt | Nuke TNT | SPHERE | 48 | - | fire | 200 | 4E5D2A | NUKE | =@x1000_tnt*2,nether_star | A crater almost 100 blocks wide, and the rim burns. Run.
+tsar_tnt | Tsar TNT | SPHERE | 60 | - | fire | 240 | 2B2B33 | TSAR | =@nuke_tnt*2,nether_star*2 | The biggest one. Flattens everything for 60 blocks around.
+
+## Small and odd
+mini_tnt | Mini TNT | BLAST | 2 | - | - | - | E46A63 | MINI | =gunpowder*2,sand | A small pop. Breaks only a few blocks.
+firecracker_tnt | Firecracker | BLAST | 1.5 | - | noblocks | 30 | E84A8A | BANG | =gunpowder,paper,red_dye | Loud, and harmless to blocks.
+safe_tnt | Safe TNT | BLAST | 5 | - | noblocks | - | EDEDED | SAFE | white_wool | Hurts mobs but never breaks a block.
+mining_tnt | Mining TNT | SELECT | 4 | 1 | any | - | 8C8C8C | MINE | iron_pickaxe | Breaks blocks and drops every one of them. Hurts nobody.
+silent_tnt | Silent TNT | SELECT | 3 | 0 | any!quiet | - | 6F7A86 | SHH | gray_wool | Removes blocks without a sound and without hurting anyone.
+instant_tnt | Instant TNT | BLAST | 4 | - | - | 1 | FF5A1F | NOW | redstone | Blows up the moment it is lit.
+slow_tnt | Slow TNT | BLAST | 4 | - | - | 600 | 9A4B3C | WAIT | clock | Waits 30 seconds before it blows.
+dud_tnt | Dud TNT | NOTHING | - | - | - | - | 7A6A55 | DUD | dirt | Hisses, smokes... and does nothing.
+prank_tnt | Prank TNT | SOUND | - | - | - | - | B45FD6 | BOO | note_block | Makes scary noises and hurts nobody.
+
+## Digging shapes
+drill_tnt | Drill TNT | SHAFT | 1 | - | down | - | 5E6B7A | DRIL | stone_pickaxe | Digs a 3x3 hole straight down to bedrock.
+big_drill_tnt | Big Drill TNT | SHAFT | 2 | - | down | - | 55616F | BDRL | =@drill_tnt*2 | Digs a 5x5 hole straight down to bedrock.
+needle_tnt | Needle TNT | SHAFT | 0 | - | down | - | 9AA5B1 | NDL | stick | Pokes a 1x1 hole all the way down to bedrock.
+chimney_tnt | Chimney TNT | SHAFT | 1 | - | up | - | 8A6F5C | CHIM | ladder | Digs a 3x3 hole straight up to the sky.
+tunnel_tnt | Tunnel TNT | TUNNEL | 1 | 32 | - | - | 6B5B4B | TUNL | rail | Digs a 3x3 tunnel 32 blocks forward. Forward is the way you faced when you placed it.
+wide_tunnel_tnt | Wide Tunnel TNT | TUNNEL | 2 | 48 | - | - | 5F5042 | WTUN | =@tunnel_tnt*2 | Digs a 5x5 tunnel 48 blocks forward.
+cross_tunnel_tnt | Cross Tunnel TNT | TUNNEL | 1 | 24 | cross | - | 74644F | CROS | =@tunnel_tnt*4 | Digs four tunnels at once, one in each direction.
+breach_tnt | Breach TNT | TUNNEL | 1 | 4 | - | - | A9793F | DOOR | oak_door | Opens a 3x3 doorway four blocks deep. Nothing else is touched.
+quarry_tnt | Quarry TNT | SHAFT | 5 | - | down | 100 | 4C7A8C | QRY | diamond_pickaxe | Digs an 11x11 pit all the way down to bedrock.
+big_quarry_tnt | Big Quarry TNT | SHAFT | 8 | - | down | 120 | 3F6B7C | BQRY | =@quarry_tnt*2 | Digs a 17x17 pit all the way down to bedrock.
+chunk_tnt | Chunk TNT | CHUNK | 0 | - | - | 120 | 34495E | CHNK | =@quarry_tnt*2,map | Deletes the whole chunk it stands in, from the sky down to bedrock.
+cube_tnt | Cube TNT | CUBE | 3 | - | - | - | 7D7D7D | CUBE | cobblestone | Cuts out a perfect 7x7x7 cube.
+crater_tnt | Crater TNT | BOWL | 12 | 5 | - | - | 8B6B4A | BOWL | bowl | Leaves a wide, shallow bowl in the ground.
+funnel_tnt | Funnel TNT | BOWL | 8 | 8 | cone | - | 5A5A64 | FUNL | hopper | Digs a pointed pit, like an upside-down pyramid.
+flatten_tnt | Flatten TNT | FLATTEN | 12 | - | - | - | 7FA04B | FLAT | iron_shovel | Clears everything above the ground it stands on. Makes land flat.
+big_flatten_tnt | Big Flatten TNT | FLATTEN | 24 | - | - | 120 | 6E8F3F | BFLT | =@flatten_tnt*3 | Flattens a huge area. Good for a building site.
+pancake_tnt | Pancake TNT | DISK | 14 | 2 | - | - | D9B26A | PNCK | smooth_stone_slab | Shaves a thin, wide layer off the ground.
+moat_tnt | Moat TNT | RING | 10 | 5 | - | - | 4D7EA8 | MOAT | wooden_shovel | Digs a round ditch around itself.
+staircase_tnt | Staircase TNT | STAIRS_DOWN | - | 40 | - | - | 8D8D8D | STEP | cobblestone_stairs | Digs a staircase 40 steps down, forward.
+cheese_tnt | Swiss Cheese TNT | CHECKER | 6 | - | - | - | F2CF3A | CHEZ | yellow_wool | Removes every second block. The ground looks like cheese.
+shell_tnt | Shell TNT | SHELL | 7 | - | - | - | E6D5B8 | SHEL | nautilus_shell | Cuts a thin round shell and leaves a ball floating inside.
+trench_tnt | Trench TNT | TRENCH | 1 | 32 | 5 | - | 6E5B3A | DTCH | stone_shovel | Digs a ditch 3 wide, 5 deep and 32 long, forward.
+bunker_buster_tnt | Bunker Buster TNT | BURROW | 6 | 12 | - | - | 3E3E46 | BUST | anvil | Sinks 12 blocks into the ground, then blows up down there.
+cave_tnt | Cave TNT | DOME_CUT | 8 | - | - | - | 5B4E46 | CAVE | campfire | Carves a round room with a flat floor. An instant cave base.
+
+## Picky TNT
+xray_tnt | X-Ray TNT | SELECT | 9 | 0 | common | - | 7ED6DF | XRAY | spyglass | Removes stone and dirt but leaves the ores, so you see what was hidden.
+ore_miner_tnt | Ore Miner TNT | SELECT | 12 | 1 | ore | - | E0B040 | ORES | golden_pickaxe | Breaks only the ores nearby and drops them all at its feet.
+lumberjack_tnt | Lumberjack TNT | SELECT | 12 | 1 | tree | - | 8A5A2B | LOGS | iron_axe | Cuts down every tree nearby and drops the wood at its feet.
+leaf_blower_tnt | Leaf Blower TNT | SELECT | 12 | 0 | leaves | - | 4E9A3A | LEAF | shears | Removes all the leaves nearby. The trunks stay.
+lawn_mower_tnt | Lawn Mower TNT | SELECT | 16 | 0 | plants | - | 6DBE45 | MOW | short_grass | Removes grass, ferns and flowers. The ground stays.
+sponge_tnt | Sponge TNT | SELECT | 10 | 0 | water | - | D8D04A | SPNG | sponge | Soaks up all the water nearby.
+big_sponge_tnt | Big Sponge TNT | SELECT | 22 | 0 | water | 100 | C4BC3C | BSPG | =@sponge_tnt*3 | Dries out a whole lake.
+extinguisher_tnt | Extinguisher TNT | SELECT | 16 | 0 | hot | - | D64545 | EXT | bucket | Puts out every fire and removes the lava nearby.
+snow_plow_tnt | Snow Plow TNT | SELECT | 16 | 0 | snow | - | BFD9EA | PLOW | golden_shovel | Clears away snow and ice.
+stone_eater_tnt | Stone Eater TNT | SELECT | 8 | 0 | stone | - | 777777 | STON | stone | Eats only stone. Ores, dirt and everything else stay.
+harvest_tnt | Harvest TNT | SELECT | 12 | 1 | crops | - | D9C04A | HARV | iron_hoe | Harvests every ripe crop nearby and plants it again.
+glass_breaker_tnt | Glass Breaker TNT | SELECT | 12 | 0 | glass | - | A8D8E8 | GLSB | glass_pane | Smashes only glass.
+lights_out_tnt | Lights Out TNT | SELECT | 16 | 0 | light | - | 2A2A3A | DARK | black_wool | Removes torches, lanterns and other lights.
+bedrock_tnt | Bedrock Breaker TNT | SELECT | 2 | 0 | bedrock | - | 3A3A3A | BDRK | netherite_pickaxe | The only TNT that breaks bedrock. Careful: under it is the void.
+
+## Turn-into TNT
+midas_tnt | Midas TNT | CONVERT | 3 | - | gold_block | - | F5C827 | GOLD | gold_block*4 | Turns every block nearby into gold.
+diamond_tnt | Diamond TNT | CONVERT | 2 | - | diamond_block | - | 4FE0D8 | DIAM | diamond_block*4 | Turns the blocks next to it into diamond blocks.
+emerald_tnt | Emerald TNT | CONVERT | 2 | - | emerald_block | - | 2FCB63 | EMRL | emerald_block*4 | Turns the blocks next to it into emerald blocks.
+iron_tnt | Iron TNT | CONVERT | 3 | - | iron_block | - | D8D8D8 | IRON | iron_block*4 | Turns every block nearby into iron.
+glass_tnt | Glass TNT | CONVERT | 6 | - | glass | - | C6ECF2 | GLAS | glass | Turns the ground into glass, so you can see the caves below.
+obsidian_tnt | Obsidian TNT | CONVERT | 4 | - | obsidian | - | 2A1F3D | OBSI | obsidian | Turns every block nearby into obsidian.
+slime_block_tnt | Slime Block TNT | CONVERT | 5 | - | slime_block | - | 7CC860 | SLMB | slime_block | Turns the ground into a bouncy slime pit.
+honey_tnt | Honey TNT | CONVERT | 5 | - | honey_block | - | EFA22B | HONY | honey_block | Turns the ground into sticky honey.
+glacier_tnt | Glacier TNT | CONVERT | 7 | - | packed_ice | - | 9CC4F2 | GLCR | packed_ice | Turns everything nearby into packed ice.
+petrify_tnt | Petrify TNT | CONVERT | 6 | - | stone | - | 8E8E8E | ROCK | smooth_stone | Turns everything nearby into plain stone.
+nether_tnt | Nether TNT | CONVERT | 8 | - | netherrack,netherrack,netherrack,netherrack,soul_sand,magma_block | - | 6E2A2A | NTHR | nether_bricks | Turns the land into a piece of the Nether.
+glow_tnt | Glow TNT | CONVERT | 3 | - | glowstone | - | F2D680 | GLOW | glowstone | Turns every block nearby into glowstone.
+crystal_tnt | Crystal TNT | CONVERT | 4 | - | amethyst_block | - | A678E8 | CRYS | amethyst_block | Turns every block nearby into amethyst.
+prismarine_tnt | Prismarine TNT | CONVERT | 5 | - | prismarine,prismarine_bricks,dark_prismarine,sea_lantern | - | 5DB8A5 | PRSM | prismarine | Turns the land into a piece of an ocean temple.
+pumpkin_tnt | Pumpkin TNT | CONVERT | 4 | - | pumpkin,pumpkin,jack_o_lantern | - | E88A1A | PUMP | pumpkin | Turns every block nearby into pumpkins.
+rainbow_tnt | Rainbow TNT | CONVERT | 6 | - | white_wool,orange_wool,magenta_wool,light_blue_wool,yellow_wool,lime_wool,pink_wool,cyan_wool,purple_wool,blue_wool,green_wool,red_wool | - | F06AB0 | RNBW | red_dye,yellow_dye,blue_dye | Turns everything nearby into wool of every colour.
+sculk_tnt | Sculk TNT | CONVERT | 6 | - | sculk | - | 0F3540 | SCLK | sculk | Turns everything nearby into sculk.
+infection_tnt | Infection TNT | CONVERT | 3 | - | tnt | - | FF2A2A | TNT+ | gunpowder*4 | Turns the blocks around it into more TNT. Light one and run.
+
+## Paint TNT
+white_paint_tnt | White Paint TNT | CONVERT | 5 | - | white_concrete | - | F0F0F0 | WHT | white_dye | Paints every block nearby white. They become white concrete.
+orange_paint_tnt | Orange Paint TNT | CONVERT | 5 | - | orange_concrete | - | F9801D | ORNG | orange_dye | Paints every block nearby orange. They become orange concrete.
+magenta_paint_tnt | Magenta Paint TNT | CONVERT | 5 | - | magenta_concrete | - | C74EBD | MGNT | magenta_dye | Paints every block nearby magenta. They become magenta concrete.
+light_blue_paint_tnt | Light Blue Paint TNT | CONVERT | 5 | - | light_blue_concrete | - | 3AB3DA | LBLU | light_blue_dye | Paints every block nearby light blue. They become light blue concrete.
+yellow_paint_tnt | Yellow Paint TNT | CONVERT | 5 | - | yellow_concrete | - | FED83D | YLW | yellow_dye | Paints every block nearby yellow. They become yellow concrete.
+lime_paint_tnt | Lime Paint TNT | CONVERT | 5 | - | lime_concrete | - | 80C71F | LIME | lime_dye | Paints every block nearby lime. They become lime concrete.
+pink_paint_tnt | Pink Paint TNT | CONVERT | 5 | - | pink_concrete | - | F38BAA | PINK | pink_dye | Paints every block nearby pink. They become pink concrete.
+gray_paint_tnt | Gray Paint TNT | CONVERT | 5 | - | gray_concrete | - | 474F52 | GRAY | gray_dye | Paints every block nearby gray. They become gray concrete.
+light_gray_paint_tnt | Light Gray Paint TNT | CONVERT | 5 | - | light_gray_concrete | - | 9D9D97 | LGRY | light_gray_dye | Paints every block nearby light gray. They become light gray concrete.
+cyan_paint_tnt | Cyan Paint TNT | CONVERT | 5 | - | cyan_concrete | - | 169C9C | CYAN | cyan_dye | Paints every block nearby cyan. They become cyan concrete.
+purple_paint_tnt | Purple Paint TNT | CONVERT | 5 | - | purple_concrete | - | 8932B8 | PRPL | purple_dye | Paints every block nearby purple. They become purple concrete.
+blue_paint_tnt | Blue Paint TNT | CONVERT | 5 | - | blue_concrete | - | 3C44AA | BLUE | blue_dye | Paints every block nearby blue. They become blue concrete.
+brown_paint_tnt | Brown Paint TNT | CONVERT | 5 | - | brown_concrete | - | 835432 | BRWN | brown_dye | Paints every block nearby brown. They become brown concrete.
+green_paint_tnt | Green Paint TNT | CONVERT | 5 | - | green_concrete | - | 5E7C16 | GRN | green_dye | Paints every block nearby green. They become green concrete.
+red_paint_tnt | Red Paint TNT | CONVERT | 5 | - | red_concrete | - | B02E26 | RED | red_dye | Paints every block nearby red. They become red concrete.
+black_paint_tnt | Black Paint TNT | CONVERT | 5 | - | black_concrete | - | 1D1D21 | BLK | black_dye | Paints every block nearby black. They become black concrete.
+
+## Ground changers
+snow_tnt | Snow TNT | SURFACE | 16 | - | >snow:100 | - | F4FAFF | SNOW | snow_block | Covers the ground with snow.
+desert_tnt | Desert TNT | SURFACE | 14 | - | sand>dead_bush:2 | - | E3D29A | DSRT | sand | Turns the ground into a desert.
+meadow_tnt | Meadow TNT | SURFACE | 14 | - | grass_block>short_grass:30 | - | 6FB04A | MDOW | wheat_seeds | Turns the ground into a green meadow.
+flower_tnt | Flower TNT | SURFACE | 12 | - | grass_block>poppy,dandelion,cornflower,oxeye_daisy,azure_bluet,allium,blue_orchid,red_tulip,pink_tulip:45 | - | E86AA0 | FLWR | poppy,dandelion | Covers the ground with flowers.
+mushroom_tnt | Mushroom TNT | SURFACE | 12 | - | mycelium>red_mushroom,brown_mushroom:8 | - | 8B6F86 | SHRM | red_mushroom | Turns the ground into a mushroom field.
+moss_tnt | Moss TNT | SURFACE | 12 | - | moss_block>moss_carpet,azalea,flowering_azalea,short_grass:20 | - | 5C7A2B | MOSS | moss_block | Covers the ground with moss and azalea.
+ice_rink_tnt | Ice Rink TNT | SURFACE | 12 | - | packed_ice | - | A9D4F5 | RINK | blue_ice | Turns the ground into a slippery ice rink.
+plow_tnt | Plow TNT | SURFACE | 10 | - | farmland | - | 7A4E2B | TILL | wooden_hoe | Turns the ground into farmland, ready for seeds.
+cake_tnt | Cake TNT | SURFACE | 6 | - | >cake:50 | - | F7E3D0 | CAKE | cake | Puts cakes all over the ground.
+
+## Ore makers
+coal_ore_tnt | Coal Ore TNT | ORE | 6 | 150 | coal | - | 3B3B3B | COAL | coal | Turns some of the stone nearby into coal ore.
+iron_ore_tnt | Iron Ore TNT | ORE | 6 | 120 | iron | - | C9A58A | FE | raw_iron | Turns some of the stone nearby into iron ore.
+copper_ore_tnt | Copper Ore TNT | ORE | 6 | 120 | copper | - | C8683F | CU | raw_copper | Turns some of the stone nearby into copper ore.
+gold_ore_tnt | Gold Ore TNT | ORE | 6 | 80 | gold | - | E8C84A | AU | raw_gold | Turns some of the stone nearby into gold ore.
+redstone_ore_tnt | Redstone Ore TNT | ORE | 6 | 80 | redstone | - | C81E1E | RS | redstone_torch | Turns some of the stone nearby into redstone ore.
+lapis_ore_tnt | Lapis Ore TNT | ORE | 6 | 80 | lapis | - | 2B4FB8 | LAPS | lapis_lazuli | Turns some of the stone nearby into lapis ore.
+diamond_ore_tnt | Diamond Ore TNT | ORE | 6 | 20 | diamond | - | 63D9D0 | DORE | diamond*4 | Turns a little of the stone nearby into diamond ore.
+emerald_ore_tnt | Emerald Ore TNT | ORE | 6 | 20 | emerald | - | 3FCB70 | EORE | emerald*4 | Turns a little of the stone nearby into emerald ore.
+quartz_ore_tnt | Quartz Ore TNT | ORE | 6 | 120 | nether:nether_quartz_ore | - | E6DDD2 | QRTZ | quartz | Turns some of the netherrack nearby into quartz ore.
+nether_gold_ore_tnt | Nether Gold Ore TNT | ORE | 6 | 100 | nether:nether_gold_ore | - | B8862B | NGLD | gold_nugget | Turns some of the netherrack nearby into nether gold ore.
+debris_tnt | Ancient Debris TNT | ORE | 8 | 10 | nether:ancient_debris | - | 5A4038 | DBRS | netherite_scrap*2 | Turns a tiny bit of the netherrack nearby into ancient debris.
+jackpot_tnt | Jackpot TNT | ORE | 6 | 100 | coal,iron,copper,gold,redstone,lapis,diamond,emerald | - | D94FD0 | JACK | coal,raw_iron,raw_gold,diamond,emerald | Turns some of the stone nearby into a mix of every ore.
+
+## Liquids, fire and ice
+water_tnt | Water TNT | FILL | 3 | 100 | water | - | 3F76E4 | WATR | water_bucket | Leaves a big ball of water.
+flood_tnt | Flood TNT | FLOOD | 12 | 6 | - | - | 2F5FC8 | FLUD | =@water_tnt*3 | Fills every hole and valley around it with water.
+lava_tnt | Lava TNT | FILL | 2 | 100 | lava | - | F26B1D | LAVA | lava_bucket | Leaves a ball of lava.
+fire_tnt | Fire TNT | FIRE | 8 | 60 | - | - | F2941D | FIRE | flint_and_steel | Sets the ground on fire all around.
+inferno_tnt | Inferno TNT | FIRE | 20 | 70 | - | 100 | D9541D | INFR | =@fire_tnt*3 | Sets a huge area on fire.
+ice_tnt | Ice TNT | FREEZE | 10 | - | - | - | 8FD0F5 | ICE | ice | Freezes water to ice, cools lava to stone and leaves snow.
+blizzard_tnt | Blizzard TNT | FREEZE | 20 | - | - | 100 | C7E6FA | BLZD | =@ice_tnt*3 | Freezes a whole lake and covers the land with snow.
+cobweb_tnt | Cobweb TNT | FILL | 4 | 60 | cobweb | - | DCDCDC | WEB | cobweb | Fills the air with cobwebs. A sticky trap.
+powder_snow_tnt | Powder Snow TNT | FILL | 3 | 100 | powder_snow | - | F0F8FF | PSNW | powder_snow_bucket | Leaves a ball of powder snow that mobs sink into.
+torch_tnt | Torch TNT | TORCH | 16 | - | - | - | F5C542 | LITE | torch | Puts torches on the dark floors all around. Lights up a whole cave.
+
+## Builders
+house_tnt | House TNT | BUILD | - | - | house | - | B5874B | HOUS | oak_log,oak_door | Builds a small house with a bed, a chest and a door.
+tower_tnt | Tower TNT | BUILD | - | - | tower | - | 8A8A8A | TOWR | cobblestone,ladder | Builds a stone watch tower with a ladder inside.
+wall_tnt | Wall TNT | BUILD | - | - | wall | - | 7C7C7C | WALL | stone_bricks*2 | Builds a castle wall across the way you face.
+bridge_tnt | Bridge TNT | BUILD | - | - | bridge | - | A67C45 | BRDG | oak_slab,oak_fence | Builds a wooden bridge 48 blocks forward.
+platform_tnt | Platform TNT | BUILD | - | - | platform | - | 9C9C9C | PLAT | stone_slab | Builds a flat 15x15 stone platform.
+sky_platform_tnt | Sky Platform TNT | BUILD | - | - | sky_platform | - | 9EC7F0 | SKYP | =@platform_tnt,@tower_tnt | Builds a platform 40 blocks up, with a ladder to climb.
+stairway_tnt | Stairway TNT | BUILD | - | - | stairway | - | B8935A | STRS | oak_stairs | Builds stairs 40 steps up into the sky, forward.
+pyramid_tnt | Pyramid TNT | BUILD | - | - | pyramid | - | DCCB8C | PYRA | sandstone*2 | Builds a sandstone pyramid.
+dome_tnt | Dome TNT | BUILD | - | - | dome | - | BDE3EC | DOME | glass*2 | Builds a glass dome over the spot.
+bunker_tnt | Bunker TNT | BUILD | - | - | bunker | - | 33264D | BUNK | obsidian*4 | Builds an obsidian bunker with a doorway.
+bubble_tnt | Bubble TNT | BUILD | - | - | bubble | - | D5F2F7 | BUBL | glass_bottle | Builds a big hollow glass ball.
+well_tnt | Well TNT | BUILD | - | - | well | - | 6E7F8C | WELL | cobblestone,water_bucket | Builds a village well with water.
+pool_tnt | Pool TNT | BUILD | - | - | pool | - | 4FB3E8 | POOL | quartz_block,water_bucket | Builds a swimming pool.
+farm_tnt | Farm TNT | BUILD | - | - | farm | - | 9AB83C | FARM | wheat_seeds,water_bucket | Builds a fenced wheat farm with water, already planted.
+igloo_tnt | Igloo TNT | BUILD | - | - | igloo | - | E8F4FA | IGLU | snow_block*2 | Builds an igloo with a bed inside.
+maze_tnt | Maze TNT | BUILD | - | - | maze | - | 3F7F2F | MAZE | oak_leaves | Grows a hedge maze. A new one every time.
+smiley_tnt | Smiley TNT | BUILD | - | - | smiley | - | FFD92E | SMIL | yellow_wool,black_wool | Draws a big smiley face on the ground.
+snowman_tnt | Snowman TNT | BUILD | - | - | snowman | - | FAFAFA | SNWM | snow_block,carved_pumpkin | Builds a giant snowman.
+castle_tnt | Castle TNT | BUILD | - | - | castle | 100 | 6A6A72 | CSTL | =@tower_tnt*2,@wall_tnt*2 | Builds a castle with four towers, walls and a gate.
+island_tnt | Island TNT | BUILD | - | - | island | - | 6BB5E0 | ISLE | dirt,oak_sapling | Builds a floating island with a tree, 30 blocks above.
+portal_tnt | Portal TNT | BUILD | - | - | portal | - | 7B2FD0 | PRTL | obsidian,flint_and_steel | Builds a Nether portal and lights it.
+railway_tnt | Railway TNT | BUILD | - | - | railway | - | A0522D | RAIL | rail,powered_rail | Lays 64 blocks of powered railway, forward.
+minefield_tnt | Minefield TNT | BUILD | - | - | minefield | - | 556B2F | MNFD | stone_pressure_plate | Hides pressure-plate mines all around. Do not step on them.
+cage_tnt | Cage TNT | BUILD | - | - | cage | - | 9FA4A8 | CAGE | iron_bars | Locks every mob nearby in a cage of iron bars.
+volcano_tnt | Volcano TNT | BUILD | - | - | volcano | - | 4A2C2C | VOLC | lava_bucket,basalt | Builds a small volcano with lava running down.
+statue_tnt | Giant TNT Statue | BUILD | - | - | statue | - | E0362C | STAT | red_wool,white_wool | Builds a giant TNT made of wool. It is only wool. Promise.
+parkour_tnt | Parkour TNT | BUILD | - | - | parkour | - | 35C4A0 | PRKR | leather_boots | Builds a jumping course with a cake at the end. A new one every time.
+elevator_tnt | Elevator TNT | BUILD | - | - | elevator | - | 6AD0E8 | LIFT | soul_sand,glass | Builds a bubble lift 30 blocks up. Open the door, swim in and ride.
+
+## Plants
+tree_tnt | Tree TNT | TREES | 0 | 1 | fancy_oak,oak | - | 5A8F3A | TREE | oak_sapling | Grows a big oak tree on the spot. Needs dirt or grass.
+forest_tnt | Forest TNT | TREES | 14 | 25 | oak,birch,fancy_oak | - | 3F7A32 | FRST | oak_sapling,birch_sapling | Grows a whole forest. Needs dirt or grass.
+jungle_tnt | Jungle TNT | TREES | 14 | 18 | jungle_tree,mega_jungle_tree | - | 2F8F2A | JNGL | jungle_sapling | Grows a jungle. Needs dirt or grass.
+cherry_tnt | Cherry Blossom TNT | TREES | 12 | 12 | cherry | - | F5A8C8 | CHRY | cherry_sapling | Grows a cherry grove. Needs dirt or grass.
+taiga_tnt | Taiga TNT | TREES | 14 | 22 | spruce,mega_spruce | - | 2F5F3F | TAIG | spruce_sapling | Grows a spruce forest. Needs dirt or grass.
+giant_mushroom_tnt | Giant Mushroom TNT | TREES | 10 | 10 | huge_red_mushroom,huge_brown_mushroom | - | C0392B | BSHR | brown_mushroom | Grows giant mushrooms.
+bonemeal_tnt | Bonemeal TNT | BONEMEAL | 10 | 4 | - | - | E8E8DC | GROW | bone_meal | Makes every crop and sapling nearby grow at once.
+
+## Mob TNT
+cow_tnt | Cow TNT | MOB | 4 | 6 | cow | - | 5A4632 | COW | leather | Six cows appear.
+pig_tnt | Pig TNT | MOB | 4 | 6 | pig | - | F0A5A2 | PIG | porkchop | Six pigs appear.
+sheep_tnt | Sheep TNT | MOB | 4 | 6 | sheep | - | E8E8E8 | SHEP | mutton | Six sheep appear.
+chicken_tnt | Chicken TNT | MOB | 4 | 8 | chicken | - | F5F0E0 | CHKN | feather | Eight chickens appear.
+horse_tnt | Horse TNT | MOB | 4 | 3 | horse | - | 8B5A2B | HORS | golden_carrot | Three horses appear.
+wolf_tnt | Wolf TNT | MOB | 4 | 4 | wolf | - | D0D0D0 | WOLF | bone | Four wolves appear.
+cat_tnt | Cat TNT | MOB | 4 | 4 | cat | - | F0B050 | CAT | cod | Four cats appear.
+bee_tnt | Bee TNT | MOB | 4 | 8 | bee | - | F2C42E | BEE | honeycomb | Eight bees appear.
+axolotl_tnt | Axolotl TNT | MOB | 4 | 5 | axolotl | - | F8B8D8 | AXOL | tropical_fish | Five axolotls appear.
+villager_tnt | Villager TNT | MOB | 4 | 4 | villager | - | B88A6A | VILL | emerald,bread | Four villagers appear.
+iron_golem_tnt | Iron Golem TNT | MOB | 3 | 2 | iron_golem | - | CFCFC4 | GOLM | iron_ingot,poppy | Two iron golems appear.
+snow_golem_tnt | Snow Golem TNT | MOB | 4 | 5 | snow_golem | - | F8F8FF | SGLM | carved_pumpkin | Five snow golems appear.
+zoo_tnt | Zoo TNT | MOB | 6 | 14 | cow,pig,sheep,chicken,horse,rabbit,fox,panda,llama,goat,parrot,frog,camel,armadillo | - | 8BC34A | ZOO | wheat,carrot | Fourteen different animals appear.
+zombie_tnt | Zombie TNT | MOB | 4 | 8 | zombie | - | 4A7A3A | ZOMB | rotten_flesh | Eight zombies appear.
+skeleton_tnt | Skeleton TNT | MOB | 4 | 8 | skeleton | - | C8C8C8 | SKEL | arrow | Eight skeletons appear.
+creeper_tnt | Creeper TNT | MOB | 4 | 6 | creeper | - | 4CAF50 | CREP | gunpowder | Six creepers appear.
+charged_creeper_tnt | Charged Creeper TNT | MOB | 4 | 3 | creeper+charged | - | 38C8E8 | CHRG | gunpowder,lightning_rod | Three charged creepers appear.
+spider_tnt | Spider TNT | MOB | 4 | 8 | spider | - | 3A2F2F | SPDR | string | Eight spiders appear.
+enderman_tnt | Enderman TNT | MOB | 4 | 4 | enderman | - | 1A1A22 | ENDR | ender_pearl | Four endermen appear.
+slime_tnt | Slime TNT | MOB | 4 | 6 | slime | - | 6FCB5A | SLIM | slime_ball | Six slimes appear.
+witch_tnt | Witch TNT | MOB | 4 | 3 | witch | - | 5A2F7A | WTCH | nether_wart | Three witches appear.
+blaze_tnt | Blaze TNT | MOB | 4 | 4 | blaze | - | F2B01E | BLAZ | blaze_rod | Four blazes appear.
+wither_skeleton_tnt | Wither Skeleton TNT | MOB | 4 | 4 | wither_skeleton | - | 2A2A2A | WSKL | bone,coal | Four wither skeletons appear.
+raid_tnt | Raid TNT | MOB | 5 | 6 | pillager,pillager,pillager,vindicator,vindicator,ravager | - | 5C6B6B | RAID | crossbow | A raiding party appears: pillagers, vindicators and a ravager.
+monster_tnt | Monster TNT | MOB | 6 | 12 | zombie,skeleton,creeper,spider,witch,enderman | - | 7A1F1F | MNST | rotten_flesh,bone | Twelve monsters of all kinds appear.
+warden_tnt | Warden TNT | MOB | 1 | 1 | warden | - | 0E3A44 | WRDN | echo_shard | A Warden appears. Good luck.
+wither_tnt | Wither TNT | MOB | 1 | 1 | wither | - | 15151A | WTHR | wither_skeleton_skull | The Wither appears. Very good luck.
+
+## Potion TNT
+speed_tnt | Speed TNT | POTION | 8 | 1 | speed:60 | - | 7CAFC6 | SPD | sugar | Everyone nearby gets Speed for a minute.
+slowness_tnt | Slowness TNT | POTION | 8 | 2 | slowness:30 | - | 5A6C81 | SLUG | soul_sand | Everyone nearby gets very slow.
+haste_tnt | Haste TNT | POTION | 8 | 1 | haste:120 | - | D9C043 | HAST | sugar,redstone | Everyone nearby mines faster for two minutes.
+strength_tnt | Strength TNT | POTION | 8 | 1 | strength:60 | - | 932423 | STR | blaze_powder | Everyone nearby gets Strength for a minute.
+weakness_tnt | Weakness TNT | POTION | 8 | 0 | weakness:60 | - | 484D48 | WEAK | fermented_spider_eye | Everyone nearby gets weak.
+healing_tnt | Healing TNT | POTION | 8 | 1 | instant_health:1 | - | F82423 | HEAL | glistering_melon_slice | Heals everyone nearby.
+harming_tnt | Harming TNT | POTION | 8 | 1 | instant_damage:1 | - | 430A09 | HARM | iron_sword | Hurts everyone nearby. No blocks break.
+jump_boost_tnt | Jump TNT | POTION | 8 | 2 | jump_boost:60 | - | 22FF4C | JUMP | rabbit_foot | Everyone nearby jumps very high for a minute.
+regeneration_tnt | Regeneration TNT | POTION | 8 | 1 | regeneration:30 | - | CD5CAB | RGEN | ghast_tear | Everyone nearby heals over time.
+fire_resistance_tnt | Fire Shield TNT | POTION | 8 | 0 | fire_resistance:120 | - | E49A3A | FRES | magma_cream | Everyone nearby cannot burn for two minutes.
+water_breathing_tnt | Water Breathing TNT | POTION | 8 | 0 | water_breathing:180 | - | 2E5299 | GILL | pufferfish | Everyone nearby can breathe under water for three minutes.
+invisibility_tnt | Invisibility TNT | POTION | 8 | 0 | invisibility:60 | - | B8BCC8 | INVS | golden_carrot,fermented_spider_eye | Everyone nearby turns invisible for a minute.
+blindness_tnt | Blindness TNT | POTION | 8 | 0 | blindness:15 | - | 1F1F23 | BLND | ink_sac | Everyone nearby cannot see for a while.
+night_vision_tnt | Night Vision TNT | POTION | 8 | 0 | night_vision:180 | - | 1F1FA1 | NVIS | glow_ink_sac | Everyone nearby sees in the dark for three minutes.
+glowing_tnt | Glowing TNT | POTION | 16 | 0 | glowing:60 | - | 94A061 | SHIN | spectral_arrow | Every mob nearby glows, so you see it through walls.
+poison_tnt | Poison TNT | POTION | 8 | 1 | poison:20 | - | 4E9331 | PSN | spider_eye | Poisons everyone nearby.
+withering_tnt | Withering TNT | POTION | 8 | 1 | wither:15 | - | 352A27 | DCAY | wither_rose | Everyone nearby withers.
+levitation_tnt | Levitation TNT | POTION | 8 | 1 | levitation:8 | - | CEFFFF | LEVI | popped_chorus_fruit | Everyone nearby floats up into the air.
+slow_falling_tnt | Feather Fall TNT | POTION | 8 | 0 | slow_falling:60 | - | F7F8E0 | SLWF | feather*2 | Everyone nearby falls slowly for a minute.
+feast_tnt | Feast TNT | POTION | 8 | 9 | saturation:1 | - | C87533 | FOOD | cooked_beef | Fills the hunger bar of everyone nearby.
+
+## Mob tricks
+knockback_tnt | Knockback TNT | PUSH | 10 | 25 | out | - | 9E9E9E | PUSH | piston | Throws everything away from it. No blocks break.
+launch_tnt | Launch TNT | PUSH | 8 | 30 | up | - | 6FBF73 | UP | sticky_piston | Throws everything nearby high into the air.
+vacuum_tnt | Vacuum TNT | PUSH | 16 | 20 | in | - | 2D2D4A | VAC | ender_eye | Pulls everything nearby towards it.
+teleport_tnt | Teleport TNT | TELEPORT | 8 | 32 | - | - | 9A4FD0 | TELE | chorus_fruit | Teleports everyone nearby to a random place close by.
+butcher_tnt | Butcher TNT | BUTCHER | 24 | - | - | - | 8E1B1B | KILL | diamond_sword | Kills every monster nearby. Animals, villagers and blocks are safe.
+love_tnt | Love TNT | LOVE | 12 | - | - | - | FF6FA5 | LOVE | pink_petals | Every animal nearby falls in love.
+milk_tnt | Milk TNT | MILK | 12 | - | - | - | FDFDF5 | MILK | milk_bucket | Removes every potion effect from everyone nearby.
+burn_tnt | Burn TNT | BURN | 10 | 8 | - | - | F2701D | BURN | fire_charge | Sets every mob nearby on fire. Blocks do not burn.
+big_tnt | Big TNT | SCALE | 10 | 60 | 3 | - | A05ADC | HUGE | mushroom_stew | Makes everyone nearby three times bigger for a minute. You too.
+tiny_tnt | Tiny TNT | SCALE | 10 | 60 | 0.3 | - | DCA05A | TINY | beetroot_soup | Makes everyone nearby tiny for a minute. You too.
+magnet_tnt | Magnet TNT | MAGNET | 24 | - | - | - | C0392B | MAGN | iron_ingot,redstone | Pulls every dropped item nearby to one spot.
+cleaner_tnt | Cleaner TNT | CLEAN | 32 | - | - | - | 5DADE2 | CLEN | cauldron | Deletes every dropped item lying around. Good against lag.
+xp_tnt | XP TNT | XP | - | 500 | - | - | 9AE830 | XP | experience_bottle | Bursts into a pile of experience.
+pinata_tnt | Pinata TNT | LOOT | - | 12 | cookie*4,cake,apple*3,bread*3,cooked_beef*4,pumpkin_pie*2,iron_ingot*3,gold_ingot*2,emerald*2,diamond,golden_apple,name_tag,saddle,firework_rocket*8 | - | F25CA2 | PINA | paper,diamond | Bursts into a pile of treats and treasure.
+stun_tnt | Stun TNT | POTION | 10 | - | slowness:20:6,jump_boost:20:128,weakness:20:9 | - | E8E84A | STUN | cobweb,stick | Everyone nearby cannot move or fight for 20 seconds.
+hero_tnt | Hero TNT | POTION | 8 | - | speed:60:1,strength:60:1,jump_boost:60:1,resistance:60:1,regeneration:60:0 | - | 2F6FE8 | HERO | golden_apple | Everyone nearby becomes a hero: fast, strong and tough for a minute.
+
+## From the sky
+lightning_tnt | Lightning TNT | LIGHTNING | 6 | 8 | - | - | F5F56A | ZAP | lightning_rod | Calls down eight lightning bolts.
+thunderstorm_tnt | Thunderstorm TNT | LIGHTNING | 24 | 45 | thunder | - | 4A4A6A | STRM | =@lightning_tnt*3 | Starts a thunderstorm and calls down lightning all around.
+meteor_tnt | Meteor TNT | RAIN_OF | 16 | 30 | fireball | - | B8431D | METR | magma_block,fire_charge | Fireballs fall from the sky.
+arrow_rain_tnt | Arrow Rain TNT | RAIN_OF | 10 | 150 | arrow | - | 9C7A4A | ARRW | bow | A rain of arrows falls from the sky.
+anvil_rain_tnt | Anvil Rain TNT | RAIN_OF | 8 | 20 | anvil | - | 4A4A4A | ANVL | anvil,iron_block | Anvils fall from the sky.
+carpet_bomb_tnt | Carpet Bomb TNT | RAIN_OF | 14 | 25 | tnt | - | 6B6B3A | BOMB | tnt*8 | Twenty-five TNT fall from the sky in a square.
+cluster_tnt | Cluster TNT | CLUSTER | - | 12 | - | - | E05A2B | CLST | firework_star | Bursts into twelve TNT that fly in all directions.
+big_cluster_tnt | Big Cluster TNT | CLUSTER | - | 40 | - | - | C84A20 | BCLS | =@cluster_tnt*3 | Bursts into forty TNT that fly in all directions.
+fractal_tnt | Fractal TNT | CLUSTER | - | 5 | @cluster_tnt | - | D02FA0 | FRAC | =@cluster_tnt*4 | Bursts into five Cluster TNT, and each of those bursts again.
+firework_tnt | Firework TNT | FIREWORK | 8 | 25 | - | - | E84AD0 | FWRK | firework_rocket | Shoots a burst of fireworks. No damage.
+new_year_tnt | New Year TNT | FIREWORK | 16 | 120 | - | - | 3A2FD0 | YEAR | =@firework_tnt*3 | A long firework show. No damage.
+snowball_tnt | Snowball TNT | BURST | - | 150 | snowball | - | EAF6FF | SBAL | snowball | Bursts into 150 snowballs.
+egg_tnt | Egg TNT | BURST | - | 60 | egg | - | E8DCC0 | EGG | egg | Bursts into 60 eggs. Some of them hatch.
+rain_tnt | Rain TNT | WEATHER | - | - | rain | - | 5A7FB8 | RAIN | wet_sponge | Makes it rain.
+sun_tnt | Sun TNT | WEATHER | - | - | clear | - | FFE04A | SUN | sunflower | Clears the sky.
+day_tnt | Day TNT | TIME | - | - | day | - | FFEFA0 | DAY | glowstone_dust | Skips to the morning.
+night_tnt | Night TNT | TIME | - | - | night | - | 1F2A5A | NITE | daylight_detector | Skips to the night.
+
+## Moving TNT
+floating_tnt | Floating TNT | FLY | 4 | - | float | - | F2A0C0 | FLOT | feather,string | Floats up like a balloon and blows up in the air.
+rocket_tnt | Rocket TNT | FLY | 4 | - | rocket | 40 | E0E0E0 | RCKT | firework_rocket*2 | Shoots straight up and blows up high in the sky.
+missile_tnt | Missile TNT | FLY | 6 | - | missile | 100 | 5A6B4A | MISL | firework_rocket,arrow | Flies forward and blows up on whatever it hits.
+homing_tnt | Homing TNT | FLY | 4 | - | homing | 160 | D03A3A | SEEK | compass | Chases the nearest monster and blows up next to it.
+jumping_tnt | Jumping TNT | HOP | 3 | 6 | - | 40 | 4AD0A0 | HOP | rabbit_hide | Blows up, hops away and blows up again. Six times.
+domino_tnt | Domino TNT | CHAIN | 4 | 10 | - | - | 2A2A2A | DMNO | repeater | Ten blasts in a row, marching forward.
+spiral_tnt | Spiral TNT | SPIRAL | 3 | 30 | - | - | 8A4AD0 | SPRL | comparator | Thirty blasts that spiral outwards.
+shockwave_tnt | Shockwave TNT | WAVES | 3 | 4 | - | - | 4A8AD0 | WAVE | observer | Four rings of blasts that spread outwards.
+earthquake_tnt | Earthquake TNT | QUAKE | 20 | 40 | - | - | 7A5A3A | QUAK | cobblestone,gravel | The ground shakes and cracks open all around.
+gravity_tnt | Gravity TNT | GRAVITY | 6 | - | - | - | 6A4A8A | GRAV | sand,gravel | Every block nearby falls down. Caves below collapse.
+eruption_tnt | Eruption TNT | GRAVITY | 5 | - | up | - | D0502A | ERPT | magma_block,piston | Throws the ground into the air. Blocks rain down all around.
+random_tnt | Random TNT | RANDOM | - | - | - | - | 7A7A7A | ???? | paper | Does what a random other TNT does. Nobody knows which.

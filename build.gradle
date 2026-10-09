@@ -1,0 +1,105 @@
+plugins {
+    id 'net.fabricmc.fabric-loom' version "${loom_version}"
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+    archivesName = project.archives_base_name
+}
+
+// Where the made-up game files (pictures, models, recipes...) of the 250 TNTs are written.
+def generatedDir = layout.buildDirectory.dir('generated/tnt')
+
+sourceSets {
+    main {
+        // "shared" holds the table of TNT types and the code that reads it. It uses no game code.
+        java.srcDir 'src/shared/java'
+        resources.srcDir 'src/shared/resources'
+        resources.srcDir generatedDir
+    }
+    // The small program that draws the pictures and writes the game files from the table.
+    gen {
+        java.srcDirs = ['src/gen/java', 'src/shared/java']
+        resources.srcDirs = ['src/shared/resources']
+    }
+    // Automatic tests. They run inside a real game server with no window:
+    //   gradle runGametest
+    // The tests live in src/gametest and are NOT part of the mod jar.
+    gametest {
+        compileClasspath += sourceSets.main.compileClasspath + sourceSets.main.output
+        runtimeClasspath += sourceSets.main.runtimeClasspath + sourceSets.main.output
+    }
+}
+
+loom {
+    mods {
+        tntmania {
+            sourceSet sourceSets.main
+        }
+        "tntmania-test" {
+            sourceSet sourceSets.gametest
+        }
+    }
+    runs {
+        gametest {
+            server()
+            source sourceSets.gametest
+            vmArg "-Dfabric-api.gametest"
+            vmArg "-Dfabric-api.gametest.report-file=${layout.buildDirectory.get().asFile}/gametest-report.xml"
+            vmArg "-Xmx3G"
+            runDir "build/gametest-run"
+        }
+    }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+}
+
+def genAssets = tasks.register('genAssets', JavaExec) {
+    description = 'Draws the pictures and writes the game files for every TNT in the table.'
+    classpath = sourceSets.gen.runtimeClasspath
+    mainClass = 'net.husein.tntmania.gen.Gen'
+    args generatedDir.get().asFile.absolutePath, projectDir.absolutePath
+    inputs.files(sourceSets.gen.runtimeClasspath)
+    outputs.dir(generatedDir)
+    doFirst {
+        delete generatedDir
+    }
+}
+
+processResources {
+    dependsOn genAssets
+    def version = project.version
+    def minecraftDep = project.minecraft_dep
+    inputs.property "version", version
+    inputs.property "minecraft_dep", minecraftDep
+    filesMatching("fabric.mod.json") {
+        expand "version": version, "minecraft_dep": minecraftDep
+    }
+}
+
+tasks.matching { it.name == 'sourcesJar' }.configureEach {
+    dependsOn genAssets
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 25
+}
+
+// Mod Menu's own two interfaces are only stand-ins here, so the mod compiles without downloading Mod Menu.
+// They must not be in the jar: when Mod Menu is installed, its real ones are used.
+jar {
+    exclude 'com/terraformersmc/**'
+}
+
+// Every test run starts from an empty world, so the tests can be run again and again.
+tasks.matching { it.name == 'runGametest' }.configureEach {
+    doFirst {
+        delete file('build/gametest-run/world')
+    }
+}

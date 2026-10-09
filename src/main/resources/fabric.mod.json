@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "tntmania",
+  "version": "${version}",
+  "name": "TNT Mania",
+  "description": "250 new kinds of TNT: bigger blasts up to a crater 120 blocks wide, TNT that digs tunnels and quarries, TNT that turns the ground into gold or paints it, TNT that builds a house, a castle or a hedge maze, TNT full of mobs, potions, lightning and fireworks. Each one has its own look, a recipe, and a line that says what it does. Fill mode (Esc, TNT Mania) places a whole area of TNT with one click. Everyone who plays needs the mod.",
+  "authors": ["husein"],
+  "license": "MIT",
+  "icon": "assets/tntmania/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["net.husein.tntmania.TntMania"],
+    "client": ["net.husein.tntmania.client.TntClient"],
+    "modmenu": ["net.husein.tntmania.client.ModMenuHook"]
+  },
+  "mixins": ["tntmania.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "${minecraft_dep}",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
+}
